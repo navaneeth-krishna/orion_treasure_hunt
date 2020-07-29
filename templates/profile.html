@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<form class="contact100-form validate-form" action="editprofile" method="post">
+    {% csrf_token %}
+    <span class="contact100-form-subtitle">Treasure Hunt</span>
+	<span class="contact100-form-title">
+		<img class="orion-logo" src="{% static 'images/orion-logo.png' %}" alt="Orion-logo">
+		Edit User/Team Profile
+	</span>
+	<div>
+		{% for message in messages%}
+		<p style="color: rgb(3, 70, 3); background-color:rgb(142, 247, 142); padding: 8px 15px; border-radius: 2px; margin:5px 0px 18px 0px;">{{message}}</p>
+		{% endfor %}
+	</div>
+    <div class="wrap-input100 validate-input" data-validate="Name is required">
+		<span class="label-input100">User Contact</span>
+		<input class="input100" type="text" name="user_contact" placeholder="Contact Number" value="{{prof.user_contact}}">
+		<span class="focus-input100"></span>
+    </div>
+    <div class="wrap-input100 validate-input" data-validate="Name is required">
+		<span class="label-input100">Team Mate Name</span>
+		<input class="input100" type="text" name="team_mate" placeholder="Team Mate Name" value="{{prof.team_mate_name}}">
+		<span class="focus-input100"></span>
+    </div>
+    <div class="wrap-input100 validate-input" data-validate="Name is required">
+		<span class="label-input100">Team Mate E-mail</span>
+		<input class="input100" type="email" name="team_mate_email" placeholder="Team Mate Email" value="{{prof.team_mate_email}}">
+		<span class="focus-input100"></span>
+    </div>
+    <div class="wrap-input100 validate-input" data-validate="Name is required">
+		<span class="label-input100">Team Mate Contact</span>
+		<input class="input100" type="text" name="team_mate_contact" placeholder="Contact Number" value="{{prof.team_mate_contact}}">
+		<span class="focus-input100"></span>
+	</div>
+
+	<div class="container-contact100-form-btn">
+		<div class="wrap-contact100-form-btn">
+			<div class="contact100-form-bgbtn"></div>
+			<button type="submit" class="contact100-form-btn">
+				<span>
+					SAVE
+					<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+				</span>
+
+			</button>
+
+		</div>
+	</div>
+
+	<b><a href="/dashboard/dashboard" style="display:block; text-align:center; margin:20px auto 0 auto; color:#17213f; font-size: 18px;"> Back to Dashboard</a></b>
+</form>
+
+
+
+{% else %}
+
+<span class="contact100-form-subtitle">You are not logged in!</span>
+<a href="/" style="color:#17213f; font-size: 20px; display:block;text-align: center;"> Go to Login!</a>
+
+
+{% endif %}
+
+{% endblock %}
